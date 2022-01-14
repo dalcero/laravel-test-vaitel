@@ -16,15 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all()->map(function ($customer) {
-            return [
-                'id'       => $customer->id,
-                'name'     => $customer->name,
-                'document' => $customer->document,
-                'status'   => $customer->status,
-                'numbers'  => $customer->numbers->count()
-            ];
-        });
+        $customers = Customer::getAll();
 
         return Inertia::render('Customer/Index',[
             'customers' => $customers
